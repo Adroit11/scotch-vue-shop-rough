@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans|Raleway');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+.container {
+
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 700;
+  border-bottom: 2px solid #F5F5F5;
+  text-transform: uppercase;
+}
+
+nav .container {
+  display: flex;
+}
+
+nav .nav__left {
+  flex-grow: 3;
+  display: flex;
+}
+
+nav .nav__right {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+nav li a {
+  color: #3D3D3D;
+  background: #FFF;
+  display: block;
+  padding: 15px 15px;
+  transition: all 150ms ease-out;
+}
+
+nav li a:hover {
+  text-decoration: none;
+  color: #FFF;
+  background: #EFDB06;
+}
+
+nav li a:focus {
+  text-decoration: none;
+  color: #3D3D3D;
+}
+
+.title h1 {
+  text-align: center;
+}
+
+.title {
+  padding: 10px 0;
+  border-bottom: 2px solid #F5F5F5;
+}
+
+.products {
+  background: #F7F8FB;
+  padding: 30px 0;
+}
+
+.product {
+  background: #FFF;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: all 200ms ease-in;
+}
+
+.product:hover {
+  transform: scale(1.1) translateY(-15px);
+  box-shadow: 7px 9px 18px -2px rgba(61,61,61,1);
+
+}
+
+.product-link {
+  display: block;
+  color: #3D3D3D;
+}
+
+.product-link:hover {
+  color: #3D3D3D;
+  text-decoration: none;
+}
+
+.product .product__image {
+  width: 100%;
+}
+
+.product__image img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product__description {
+  width: 100%;
+}
+
+.product__description small {
+  color: #808080;
+}
+
+.product__description h4 {
+  margin: 3px 0 5px 0;
+}
+
+.product__price-cart {
+  display: flex;
+  margin-top: 10px;
+}
+
+.product__price-cart p {
+  flex-grow: 2;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+button.button {
+  background: #EFDB06;
+  border: 1px solid #F9E610;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  transition: all 200ms ease-out;
+  outline: none;
+}
+
+button.button:hover {
+  background: #F9E610;
+}
+
+button.button.button-danger {
+  background: #FF3333;
+  border: 1px solid #FF4747;
+  color: #fff;
+}
+
+button.button.button-danger:hover {
+  background: #FF4747;
+}
+
+.breadcrumb {
+  background: #F7F8FB;
+}
+
+.breadcrumb li{
+  display: inline-block;
+  padding: 5px 2px;
+}
+
+.breadcrumb li::after{
+  content: ' > '
+}
+
+.breadcrumb li:last-child::after{
+  content: ''
+}
+
+.breadcrumb li a {
+  color: #141414;
+}
+
+.breadcrumb li a:hover{
+  text-decoration: none;
+}
+
+.breadcrumb li:last-child a{
+  text-decoration: none;
+  color: #3D3D3D;
+}
+
+.breadcrumb li:last-child a:hover{
+  text-decoration: none;
+  color: #3D3D3D;
+}
+
+/* PRODUCT DETAILS */
+
+.product-details, .admin-new, .admin-products {
+  border-bottom: 2px solid #F5F5F5;
+  padding: 30px 0;
+}
+
+.product-details__image {
+
+}
+
+.product-details__description {
+  padding-top: 30px;
+}
+
+.product-details__description small {
+  color: #808080;
+}
+
+.product-details__description h3 {
+  margin: 5px 0 30px 0;
+}
+
+.product-details__price-cart {
+  display: flex;
+  padding-top: 30px;
+}
+
+.product-details__price-cart p {
+  flex-grow: 2;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.form-control:focus {
+  border-color: #F9E610;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(249, 230, 16, 0.6);
+}
+
+.new-button {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.admin-menu a {
+  display: block;
+  background: #EFDB06;
+  border: 1px solid #F9E610;
+  color: #3D3D3D;
+  padding: 10px 15px;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  transform: scaleX(1);
+  transition: transform 200ms ease-in;
+}
+
+.admin-menu a:hover {
+  text-decoration: none;
+  transform: scaleX(1.02);
+  /*box-shadow: 3px 3px 10px -2px rgba(61,61,61,1);*/
+}
+
+
+/* Transitions */
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.25s ease-out;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.scaleIn-enter-active, .scaleIn-leave-active {
+  transform: scale(1);
+  transition: scale 0.25s ease-out;
+}
+
+.scaleIn-enter, .scaleIn-leave-to {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */ {
+  opacity: 0;
+  transform: translateX(-1000px);
+}
+
+.list-move {
+  transition: transform 1s;
+}
