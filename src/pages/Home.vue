@@ -3,11 +3,7 @@
     <div class="title">
       <h1><i class="fa fa-braille"></i> In Stock</h1>
     </div>
-    <div class="products">
-      <div class="container">
-        <product-list></product-list>
-      </div>
-    </div>
+    <product-list></product-list>
   </div>
 </template>
 
