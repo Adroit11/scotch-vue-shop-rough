@@ -2,70 +2,86 @@
 // import { normalize } from 'normalizr'
 // import merge from "lodash/object/merge"
 
+import {
+  ADD_PRODUCT,
+  ADD_PRODUCT_SUCCESS,
+  PRODUCT_BY_ID,
+  PRODUCT_BY_ID_SUCCESS,
+  UPDATE_PRODUCT,
+  UPDATE_PRODUCT_SUCCESS,
+  REMOVE_PRODUCT,
+  REMOVE_PRODUCT_SUCCESS,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  ALL_PRODUCTS,
+  ALL_PRODUCTS_SUCCESS,
+  ALL_MANUFACTURERS,
+  ALL_MANUFACTURERS_SUCCESS,
+  ERROR_MSG
+} from './mutation-types'
+
 export const productMutations = {
-  addProduct: (state, payload) => {
-    // console.log(normalize(payload, productSchema))
-
-    // state = {
-    //   ...state,
-    //   products: {
-    //     ...state.products,
-    //     result: [...state.products.result, payload.id],
-    //     entities: {
-    //       ...state.products.entities,
-    //       products: {
-    //         ...state.products.entities.products,
-    //         [payload.id]: payload
-    //       }
-    //     }
-    //   }
-    // }
-    // console.log('old state', state.products, state.manufacturers.filter(x => x.id === payload.manufacturer)[0])
-
-    payload = {...payload, manufacturer: state.manufacturers.filter(x => x.id === payload.manufacturer)[0]}
-
-    // console.log('payload', payload, payload.manufacturer)
-
-    state.products = [...state.products, payload]
-    // console.log(state.products)
-    // state.products[payload.id].manufacturer = state.manufacturers[state.products[payload.id].manufacturer]
-    // state.products.entities.products[payload.id].manufacturer = state.products.entities.manufacturer[state.products.entities.products[payload.id].manufacturer]
-    // console.debug('new state', state.products)
-    // state.products.result = [...state.products.result, payload.id]
+  [ALL_PRODUCTS] (state) {
+    state.showLoader = true
+    // this[]
   },
-  updateProduct: (state, payload) => {
+  [ALL_PRODUCTS_SUCCESS] (state, payload) {
+    state.showLoader = false
+    state.products = payload
+  },
+  [PRODUCT_BY_ID] (state) {
+    state.showLoader = true
+  },
+  [PRODUCT_BY_ID_SUCCESS] (state, payload) {
+    state.showLoader = false
+    state.product = payload
+  },
+  [ADD_PRODUCT]: (state, payload) => {
+    state.showLoader = true
+  },
+  [ADD_PRODUCT_SUCCESS]: (state, payload) => {
+    state.showLoader = false
+    state.products.push(payload)
+  },
+  [UPDATE_PRODUCT]: (state, payload) => {
+    state.showLoader = true
+  },
+  [UPDATE_PRODUCT_SUCCESS]: (state, payload) => {
+    state.showLoader = false
     state.products = state.products.map(p => {
-      if (p.id === payload.id) {
-        payload = {...payload, manufacturer: state.manufacturers.filter(x => x.id === payload.manufacturer)[0]}
+      if (p._id === payload._id) {
+        payload = {...payload, manufacturer: state.manufacturers.filter(x => x._id === payload.manufacturer)[0]}
         return payload
       }
       return p
     })
   },
-  removeProduct: (state, payload) => {
-    const index = state.products.findIndex(p => p.id === payload)
-    // console.debug('removing', index, state.products.slice(0, state.products.indexOf(state.products.filter(p => p.id === payload))), state.products.slice(state.products.indexOf(state.products.filter(p => p.id === payload)) + 1))
+  [REMOVE_PRODUCT]: (state, payload) => {
+    state.showLoader = true
+  },
+  [REMOVE_PRODUCT_SUCCESS]: (state, payload) => {
+    state.showLoader = false
+    const index = state.products.findIndex(p => p._id === payload)
+    console.debug('index', index)
     state.products.splice(index, 1)
-    // state.products = state.products.filter(p => p.id !== payload)
-    // state.products = [
-    //   ...state.products.slice(0, index),
-    //   ...state.products.slice(index + 1)
-    // ]
-    console.log(state.products)
-    //   state.products.map(p => {
-    //   if (p.id !== payload) {
-    //     console.log(p)
-    //     return p
-    //   }
-    // })
-  }
+  },
+  [ERROR_MSG] (state, payload) {}
 }
 
 export const cartMutations = {
-  addToCart: (state, payload) => state.cart.push(payload),
-  removeFromCart: (state, payload) => {
+  [ADD_TO_CART]: (state, payload) => state.cart.push(payload),
+  [REMOVE_FROM_CART]: (state, payload) => {
     const index = state.cart.findIndex(p => p.id === payload)
     state.cart.splice(index, 1)
     console.log(state.cart, state.cart.length, index)
+  }
+}
+
+export const manufacturerMutations = {
+  [ALL_MANUFACTURERS] (state) {
+    state.showLoader = true
+  },
+  [ALL_MANUFACTURERS_SUCCESS] (state, payload) {
+    state.manufacturers = payload
   }
 }

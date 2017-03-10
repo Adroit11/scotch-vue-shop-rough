@@ -1,7 +1,7 @@
 <template>
   <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
     <div class="product">
-      <router-link :to="'/details/'+product.id" class="product-link">
+      <router-link :to="'/details/'+product._id" class="product-link">
         <div class="product__image">
           <img
             class="img-responsive" :src="product.image" alt="">

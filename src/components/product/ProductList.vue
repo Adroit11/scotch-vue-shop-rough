@@ -10,10 +10,19 @@
   import ProductItem from './ProductItem.vue'
   export default {
     name: 'product-list',
+    created () {
+      if (this.products.length === 0) {
+        this.$store.dispatch('allProducts')
+      }
+    },
+    computed: {
+      products () {
+        return this.$store.getters.allProducts
+      }
+    },
     data () {
-      console.log('debug', this.$store.getters.allProducts)
       return {
-        products: this.$store.getters.allProducts
+
       }
     },
     components: {

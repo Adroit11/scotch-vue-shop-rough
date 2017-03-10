@@ -9,19 +9,36 @@
 <script>
   import ProductFrom from '../../components/product/ProductForm.vue'
   export default {
+    created () {
+      if (!this.model.name) {
+        console.log('dispatched')
+        this.$store.dispatch('productById', this.$route.params['id'])
+      }
+      if (this.manufacturers.length === 0) {
+        this.$store.dispatch('allManufacturers')
+      }
+    },
     data () {
-      const pById = this.$store.getters.productById(this.$route.params['id'])
-      const manufacturers = this.$store.getters.allManufacturers
-      const model = Object.assign({}, pById, {manufacturer: manufacturers.filter(m => m.id === pById.manufacturer.id)[0].id})
+      console.log(this.$store.getters.allManufacturers)
+//      const productById = this.$store.getters.productById(this.$route.params['id'])
       return {
-        model,
-        manufacturers: this.$store.getters.allManufacturers
+//        model: {}
+//        model: this.$store.getters.productById(this.$route.params['id'])
+      }
+    },
+    computed: {
+      manufacturers () {
+        return this.$store.getters.allManufacturers
+      },
+      model () {
+        const productById = this.$store.getters.productById(this.$route.params['id'])
+        return Object.assign({}, productById)
       }
     },
     methods: {
       updateProduct (model) {
         console.log('model', model)
-        this.$store.commit('updateProduct', model)
+        this.$store.dispatch('updateProduct', model)
       }
     },
     components: {

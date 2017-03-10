@@ -16,6 +16,14 @@
 </template>
 
 <script>
+import toastr from 'toastr'
+
+import {
+  ERROR_MSG,
+  ADD_PRODUCT_SUCCESS,
+  UPDATE_PRODUCT_SUCCESS,
+  REMOVE_PRODUCT_SUCCESS
+} from './store/mutation-types'
 export default {
   name: 'app',
   data () {
@@ -23,10 +31,31 @@ export default {
       cartItems: this.$store.state.cart
     }
   },
+  created () {
+    this.$store.subscribe((mutation) => {
+      if (mutation.payload) {
+        switch (mutation.type) {
+          case ERROR_MSG:
+            toastr.error(mutation.payload.content, mutation.payload.title)
+            break
+          case ADD_PRODUCT_SUCCESS:
+            toastr.success('Product created.', 'Success!')
+            break
+          case UPDATE_PRODUCT_SUCCESS:
+            toastr.success('Product updated.', 'Success!')
+            break
+          case REMOVE_PRODUCT_SUCCESS:
+            toastr.warning('Product deleted.', 'Deleted!')
+            break
+        }
+      }
+    })
+  },
   computed: {
     cartItemsCount () {
       return this.cartItems.length
     }
+
   }
 }
 </script>

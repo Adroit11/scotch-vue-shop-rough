@@ -8,7 +8,7 @@
         </div>
         <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 product-details__info">
           <div class="product-details__description">
-            <small>{{product.manufacturer.name}}</small>
+            <small>{{product.manufacturer && product.manufacturer.name}}</small>
             <h3>{{product.name}}</h3>
             <p>
               {{product.description}}

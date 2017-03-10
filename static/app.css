@@ -144,6 +144,12 @@ button.button:hover {
   background: #F9E610;
 }
 
+button.button.disabled {
+  background: #F9E610;
+  opacity: 0.6;
+  cursor: default;
+}
+
 button.button.button-danger {
   background: #FF3333;
   border: 1px solid #FF4747;
@@ -284,4 +290,9 @@ button.button.button-danger:hover {
 
 .list-move {
   transition: transform 1s;
+}
+
+.form-control.error {
+  border-color: #FF3333;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 71, 71, 0.6);
 }

@@ -6,6 +6,10 @@
 </template>
 
 <script>
+  import {
+    ADD_TO_CART,
+    REMOVE_FROM_CART
+  } from '../../store/mutation-types'
   export default {
     props: ['product'],
     data () {
@@ -20,10 +24,10 @@
     },
     methods: {
       addToCart () {
-        this.$store.commit('addToCart', this.product)
+        this.$store.commit(ADD_TO_CART, this.product)
       },
       removeFromCart (id) {
-        this.$store.commit('removeFromCart', id)
+        this.$store.commit(REMOVE_FROM_CART, id)
       }
     }
   }

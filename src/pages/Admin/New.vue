@@ -3,20 +3,25 @@
 </template>
 
 <script>
-  import uuid from 'uuid/v4'
   import ProductFrom from '../../components/product/ProductForm.vue'
   export default {
     data () {
       return {
-        model: {},
-        manufacturers: this.$store.getters.allManufacturers
+        model: {}
+      }
+    },
+    created () {
+      this.$store.dispatch('allManufacturers')
+    },
+    computed: {
+      manufacturers () {
+        return this.$store.getters.allManufacturers
       }
     },
     methods: {
       addProduct (model) {
-        model.id = uuid()
         console.log('model', model)
-        this.$store.commit('addProduct', model)
+        this.$store.dispatch('addProduct', model)
       }
     },
     components: {
