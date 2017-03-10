@@ -12,6 +12,13 @@
       </div>
     </nav>
     <router-view></router-view>
+    <div class="overlay" v-show="showLoader">
+      <div class="loading-spinner">
+        <div class="dot dotOne"></div>
+        <div class="dot dotTwo"></div>
+        <div class="dot dotThree"></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -54,8 +61,10 @@ export default {
   computed: {
     cartItemsCount () {
       return this.cartItems.length
+    },
+    showLoader () {
+      return this.$store.state.showLoader
     }
-
   }
 }
 </script>

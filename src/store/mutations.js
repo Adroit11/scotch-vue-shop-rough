@@ -82,6 +82,7 @@ export const manufacturerMutations = {
     state.showLoader = true
   },
   [ALL_MANUFACTURERS_SUCCESS] (state, payload) {
+    state.showLoader = false
     state.manufacturers = payload
   }
 }
