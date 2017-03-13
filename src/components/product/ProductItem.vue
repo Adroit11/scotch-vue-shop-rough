@@ -7,12 +7,16 @@
             class="img-responsive" :src="product.image" alt="">
         </div>
         <div class="product__description">
-          <small>{{product.manufacturer.name}}</small>
-          <h4>{{product.name}}</h4>
+          <div class="product__info">
+            <small>{{product.manufacturer.name}}</small>
+            <h4>{{product.name}}</h4>
+          </div>
+          <div class="product__price-cart">
+            ${{product.price}}
+          </div>
         </div>
       </router-link>
-      <div class="product__price-cart">
-        <p>${{product.price}}</p>
+      <div class="product__action">
         <product-button :product="product"></product-button>
         <!--<button class="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>-->
       </div>
@@ -34,15 +38,22 @@
 <style>
   .product {
     background: #FFF;
-    padding: 15px;
-    margin-bottom: 15px;
-    transition: all 200ms ease-in;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .product:hover {
-    transform: scale(1.1) translateY(-15px);
-    box-shadow: 7px 9px 18px -2px rgba(61,61,61,1);
+  .product .product__description,
+  .product .product__action {
+    transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) transform;
+  }
 
+  .product:hover .product__description {
+    transform: translateY(-40px);
+  }
+
+  .product:hover .product__action {
+    transform: none;
   }
 
   .product-link {
@@ -63,10 +74,18 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    height: 225px;
   }
 
   .product__description {
     width: 100%;
+    display: flex;
+    padding: 20px 20px 15px;
+    background: #FFF;
+  }
+
+  .product__info {
+    flex: 2;
   }
 
   .product__description small {
@@ -78,13 +97,31 @@
   }
 
   .product__price-cart {
+    flex: 1;
     display: flex;
-    margin-top: 10px;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #51D2B7;
   }
 
   .product__price-cart p {
     flex-grow: 2;
     font-size: 20px;
     font-weight: bold;
+  }
+
+  .product__action {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(100%);
+  }
+  .product__action button {
+    border-radius: 0;
+    width: 100%;
+    display: block;
   }
 </style>
