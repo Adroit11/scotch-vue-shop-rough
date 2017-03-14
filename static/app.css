@@ -15,9 +15,9 @@ ul {
 
 nav {
   font-family: 'PT Sans', sans-serif;
-  font-weight: 700;
-  border-bottom: 2px solid #F5F5F5;
+  font-weight: 300;
   text-transform: uppercase;
+  background: #333;
 }
 
 nav .container {
@@ -36,8 +36,7 @@ nav .nav__right {
 }
 
 nav li a {
-  color: #3D3D3D;
-  background: #FFF;
+  color: #FFFFFF;
   display: block;
   padding: 15px 15px;
   transition: all 150ms ease-out;
@@ -45,13 +44,15 @@ nav li a {
 
 nav li a:hover {
   text-decoration: none;
-  color: #FFF;
-  background: #EFDB06;
+  color: #A6A6A6;
 }
 
 nav li a:focus {
   text-decoration: none;
-  color: #3D3D3D;
+}
+
+nav li a i  {
+  margin-right: 4px;
 }
 
 .title h1 {
